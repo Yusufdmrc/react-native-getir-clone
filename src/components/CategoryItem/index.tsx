@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity, Image, Text, Dimensions } from "react-native";
 import styles from "./styles";
 import { Category } from "../../models";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -10,8 +11,13 @@ type categoryItemProps = {
 };
 
 const index = ({ item }: categoryItemProps) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("CategoryScreen", { category: item })}
+      style={styles.container}
+    >
       <Image
         style={styles.image}
         source={{

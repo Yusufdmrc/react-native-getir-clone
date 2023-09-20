@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/HomeScreen";
-import { Image } from "react-native";
+import CategoryScreen from "../screens/CategoryScreen";
+import { Image, Text } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,19 @@ const HomeNavigator = () => {
               source={require("../../assets/logo.png")}
               style={{ width: 80, height: 30 }}
             />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="CategoryScreen"
+        component={CategoryScreen}
+        options={{
+          headerBackTitleVisible: false,
+          headerTintColor: "#fff",
+          headerStyle: { backgroundColor: "#5C3EBC" },
+          headerTitle: () => (
+            <Text style={{ color: "#fff", fontSize: 16 }}>Ürünler</Text>
           ),
         }}
       />
