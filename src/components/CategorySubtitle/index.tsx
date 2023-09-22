@@ -3,9 +3,18 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { Text } from "react-native";
 
-const TypeBox = ({ item, active }: { item: string; active: string }) => {
+const TitleBox = ({
+  item,
+  active,
+  setCategory,
+}: {
+  item: string;
+  active: string;
+  setCategory: any;
+}) => {
   return (
     <TouchableOpacity
+      onPress={() => setCategory(item)}
       style={[
         styles.typeBoxContainer,
         item == active ? styles.typeBoxActive : styles.typeBoxInActive,
@@ -29,7 +38,7 @@ const index = () => {
     >
       {["Birlikte İyi Gider", "Çubuk", "Kutu", "Külah", "Çoklu", "Bar"].map(
         (item) => (
-          <TypeBox item={item} active={category} />
+          <TitleBox item={item} active={category} setCategory={setCategory} />
         )
       )}
     </ScrollView>
