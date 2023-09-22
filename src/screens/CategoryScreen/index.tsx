@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { ScrollView } from "react-native";
-import CategoryDetails from "../../components/CategoryDetails";
-import { Category } from "../../models";
+import CategoryTitle from "../../components/CategoryTitle";
+import CategorySubtitle from "../../components/CategorySubtitle";
 
 const index = (props) => {
   const [category, , setCategory] = useState(props.route.params.category);
   return (
     <ScrollView>
-      <CategoryDetails categoryy={category} />
+      <CategoryTitle categoryy={category} />
+      <CategorySubtitle />
     </ScrollView>
   );
 };
