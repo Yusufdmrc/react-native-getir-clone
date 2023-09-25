@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
     borderRadius: 11,
   },
   container: {
-    width: width * 0.32,
+    width: width * 0.28,
     height: height * 0.25,
     marginTop: 12,
     marginLeft: 12,
-    marginBottom: 10,
+    marginBottom: 6,
   },
   content: {
     flexDirection: "row",

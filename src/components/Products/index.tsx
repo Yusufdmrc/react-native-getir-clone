@@ -1,13 +1,25 @@
 import React from "react";
 import styles from "./styles";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import ProductItem from "../ProductItem";
+import products from "../../../assets/products";
 
 const index = () => {
   return (
     <View>
-      <View></View>
+      <View style={styles.productItem}>
+        {products.slice(0, 2).map((item) => (
+          <ProductItem key={item.id} item={item} />
+        ))}
+      </View>
 
-      <View></View>
+      <Text style={styles.text}>Çubuk</Text>
+
+      <View style={styles.productItem2}>
+        {products.slice(2).map((item) => (
+          <ProductItem key={item.id} item={item} />
+        ))}
+      </View>
     </View>
   );
 };

@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: height * 0.014,
     paddingHorizontal: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "lightgrey",
   },
   typeBoxContainer: {
     height: height * 0.044,
