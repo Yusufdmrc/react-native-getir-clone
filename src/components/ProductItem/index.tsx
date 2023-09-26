@@ -3,14 +3,19 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import { Entypo } from "@expo/vector-icons";
 import { Product } from "../../models";
+import { useNavigation } from "@react-navigation/native";
 
 type productItemType = {
   item: Product;
 };
 
 const index = ({ item }: productItemType) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetails", { product: item })}
+      style={styles.container}
+    >
       <Image
         style={styles.image}
         source={{
