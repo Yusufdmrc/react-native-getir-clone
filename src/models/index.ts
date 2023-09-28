@@ -10,7 +10,7 @@ export declare class Product {
   readonly image: string;
   readonly images: string[];
   readonly name: string;
-  readonly miktar: string;
-  readonly fiyat: number;
-  readonly fiyatIndirimli?: number;
+  readonly quantity: string;
+  readonly price: number;
+  readonly discountPrice?: number;
 }
