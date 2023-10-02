@@ -3,6 +3,9 @@ import { ActivityIndicator, View } from "react-native";
 import { Product } from "../../models";
 import ImageCarousel from "../../components/ImageCarousel";
 import DetailContent from "../../components/DetailContent";
+import DetailProperty from "../../components/DetailProperty";
+import styles from "./styles";
+import { Text } from "react-native";
 
 function index(props) {
   const [product, setProduct] = useState<Product>();
@@ -22,6 +25,8 @@ function index(props) {
         name={product.name}
         quantity={product.quantity}
       />
+      <Text style={styles.detailText}>Detaylar</Text>
+      <DetailProperty />
     </View>
   );
 }
