@@ -3,13 +3,20 @@ import { Dimensions, StyleSheet } from "react-native";
 const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
+  productContainer: {
+    width: "100%",
+    backgroundColor: "#fff",
+  },
   container: {
+    width: width * 0.92,
     height: height * 0.13,
     backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: width * 0.05,
+    borderBottomWidth: 0.4,
+    borderBottomColor: "lightgrey",
+    marginHorizontal: width * 0.04,
   },
   img: {
     width: height * 0.09,
@@ -25,6 +32,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 14,
     fontWeight: "700",
+    maxWidth: width * 0.44,
   },
   quantity: {
     fontSize: 13,

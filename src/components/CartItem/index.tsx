@@ -11,36 +11,38 @@ type CartItemProps = {
 
 const index = ({ product }: CartItemProps) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Image style={styles.img} source={{ uri: product.image }} />
-        <View style={styles.productDetail}>
-          <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.quantity}>{product.quantity}</Text>
-          <Text style={styles.price}>
-            <Text>{"\u20BA"}</Text>
-            {product.price}
-          </Text>
+    <View style={styles.productContainer}>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Image style={styles.img} source={{ uri: product.image }} />
+          <View style={styles.productDetail}>
+            <Text style={styles.name}>{product.name}</Text>
+            <Text style={styles.quantity}>{product.quantity}</Text>
+            <Text style={styles.price}>
+              <Text>{"\u20BA"}</Text>
+              {product.price}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.btnContainer}>
-        <View style={styles.btn}>
-          <Text>-</Text>
-        </View>
-        <View
-          style={[
-            styles.btn,
-            {
-              backgroundColor: "#5D3EBD",
-              height: height * 0.036,
-              justifyContent: "center",
-            },
-          ]}
-        >
-          <Text style={styles.count}>1</Text>
-        </View>
-        <View style={styles.btn}>
-          <Text>+</Text>
+        <View style={styles.btnContainer}>
+          <View style={styles.btn}>
+            <Text>-</Text>
+          </View>
+          <View
+            style={[
+              styles.btn,
+              {
+                backgroundColor: "#5D3EBD",
+                height: height * 0.036,
+                justifyContent: "center",
+              },
+            ]}
+          >
+            <Text style={styles.count}>1</Text>
+          </View>
+          <View style={styles.btn}>
+            <Text>+</Text>
+          </View>
         </View>
       </View>
     </View>
