@@ -7,6 +7,7 @@ import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { connect } from "react-redux";
+import * as actions from "../redux/actions/cartActions";
 import {
   getFocusedRouteNameFromRoute,
   useNavigation,
@@ -22,8 +23,10 @@ const MyStack = ({
   navigation,
   route,
   cartItems,
+  clearCart,
 }: {
   cartItems: { product: Product; quantity: number }[];
+  clearCart: () => void;
 }) => {
   const tabHiddenRoutes = ["ProductDetails", "CartScreen"];
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -114,7 +117,7 @@ const MyStack = ({
                   style={{ fontWeight: "bold", color: "#5D3EBD", fontSize: 12 }}
                 >
                   <Text>{"\u20BA"}</Text>
-                  {totalPrice}
+                  {totalPrice.toFixed(2)}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -170,7 +173,10 @@ const MyStack = ({
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity style={{ paddingRight: 6 }}>
+            <TouchableOpacity
+              onPress={() => clearCart()}
+              style={{ paddingRight: 6 }}
+            >
               <Feather name="trash-2" size={24} color="#fff" />
             </TouchableOpacity>
           ),
@@ -187,10 +193,28 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default function HomeNavigator({ navigation, route, cartItems }) {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearCart: () => dispatch(actions.clearCart()),
+  };
+};
+
+export default function HomeNavigator({
+  navigation,
+  route,
+  cartItems,
+  clearCart,
+}: {
+  clearCart: () => void;
+}) {
   return (
-    <MyStack navigation={navigation} route={route} cartItems={cartItems} />
+    <MyStack
+      navigation={navigation}
+      route={route}
+      cartItems={cartItems}
+      clearCart={clearCart}
+    />
   );
 }
 
-export default connect(mapStateToProps, null)(HomeNavigator);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavigator);
