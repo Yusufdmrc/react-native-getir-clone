@@ -6,19 +6,27 @@ import CartScreen from "../screens/CartScreen";
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-
+import { connect } from "react-redux";
 import {
   getFocusedRouteNameFromRoute,
   useNavigation,
 } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Product } from "../models";
 
 const Stack = createStackNavigator();
 
 const { width, height } = Dimensions.get("window");
 
-const MyStack = ({ navigation, route }) => {
+const MyStack = ({
+  navigation,
+  route,
+  cartItems,
+}: {
+  cartItems: { product: Product; quantity: number }[];
+}) => {
   const tabHiddenRoutes = ["ProductDetails", "CartScreen"];
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   React.useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -31,6 +39,18 @@ const MyStack = ({ navigation, route }) => {
       navigation.setOptions({ tabBarStyle: { display: "true" } });
     }
   }, [navigation, route]);
+
+  const getProductPrice = () => {
+    let total = 0;
+    cartItems.forEach((cartItem) => {
+      const price = (total += cartItem.product.price);
+      setTotalPrice(price);
+    });
+  };
+
+  useEffect(() => {
+    getProductPrice();
+  }, [cartItems, navigation]);
 
   return (
     <Stack.Navigator>
@@ -94,7 +114,7 @@ const MyStack = ({ navigation, route }) => {
                   style={{ fontWeight: "bold", color: "#5D3EBD", fontSize: 12 }}
                 >
                   <Text>{"\u20BA"}</Text>
-                  24,00
+                  {totalPrice}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -160,6 +180,17 @@ const MyStack = ({ navigation, route }) => {
   );
 };
 
-export default function HomeNavigator({ navigation, route }) {
-  return <MyStack navigation={navigation} route={route} />;
+const mapStateToProps = (state) => {
+  const { cartItems } = state;
+  return {
+    cartItems: cartItems,
+  };
+};
+
+export default function HomeNavigator({ navigation, route, cartItems }) {
+  return (
+    <MyStack navigation={navigation} route={route} cartItems={cartItems} />
+  );
 }
+
+export default connect(mapStateToProps, null)(HomeNavigator);

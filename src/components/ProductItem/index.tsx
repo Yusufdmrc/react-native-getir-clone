@@ -4,12 +4,15 @@ import styles from "./styles";
 import { Entypo } from "@expo/vector-icons";
 import { Product } from "../../models";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/cartActions";
 
 type productItemType = {
   item: Product;
+  addItemToCart: (a: Product) => void;
 };
 
-const index = ({ item }: productItemType) => {
+const index = ({ item, addItemToCart }: productItemType) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -25,21 +28,34 @@ const index = ({ item }: productItemType) => {
       <View style={styles.content}>
         <Text style={styles.price}>
           <Text>{"\u20BA"}</Text>
-          {item.fiyat}
+          {item.price}
         </Text>
         <Text style={styles.discountPrice}>
           <Text>{"\u20BA"}</Text>
-          {item.fiyatIndirimli}
+          {item.discountPrice}
         </Text>
       </View>
 
       <Text style={styles.productName}>{item.name}</Text>
       <Text style={styles.amount}>{item.miktar}</Text>
-      <View style={styles.plus}>
+      <TouchableOpacity
+        onPress={() => {
+          addItemToCart(item);
+        }}
+        style={styles.plus}
+      >
         <Entypo name="plus" size={22} color="#5D3EBD" />
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
 
-export default index;
+const mapDistpatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product: Product) => {
+      dispatch(actions.addToCart({ quantity: 1, product }));
+    },
+  };
+};
+
+export default connect(null, mapDistpatchToProps)(index);
