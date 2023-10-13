@@ -30,7 +30,7 @@ function index(props) {
         <Text style={styles.detailText}>Detaylar</Text>
         <DetailProperty />
       </ScrollView>
-      <CardButton />
+      <CardButton item={product} />
     </View>
   );
 }
