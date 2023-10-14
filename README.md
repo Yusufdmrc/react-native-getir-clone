@@ -3,7 +3,7 @@ getir clone project with react native
 Based on the bring clone series of Yunus Emre Tat youtube channel, I learned the basics of react native. I set up with Expo and learned the basic navigator, screen, commponent structures. I also improved myself on these issues using typescript and redux.
 
 
-<img width="329" alt="Screenshot 2023-10-14 at 15 39 20" src="https://github.com/Yusufdmrc/react-native-getir-clone/assets/90138891/9cb4a718-6334-4610-a398-61dd30c39cc4">
+<img width="729" alt="Screenshot 2023-10-14 at 15 39 20" src="https://github.com/Yusufdmrc/react-native-getir-clone/assets/90138891/9cb4a718-6334-4610-a398-61dd30c39cc4">
 
 
 
